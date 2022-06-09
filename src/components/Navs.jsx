@@ -1,4 +1,5 @@
-/* eslint-disable array-callback-return */
+/* eslint-disable arrow-body-style */
+/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ const LINKS = [
   { to: '/', text: 'Home' },
   { to: '/starred', text: 'starred' },
 ];
-function Navs() {
+const Navs = () => {
   return (
     <div>
       <ul>
@@ -18,6 +19,6 @@ function Navs() {
       </ul>
     </div>
   );
-}
+};
 
 export default Navs;
