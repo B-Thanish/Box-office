@@ -51,6 +51,13 @@ const Home = () => {
 
   return (
     <MainPageLayout>
+      <input
+        type="text"
+        placeholder="Search for something"
+        onChange={onInputChange}
+        onKeyDown={onKeyDown}
+        value={input}
+      />
       <div>
         <label htmlFor="shows-search">
           Shows
@@ -74,13 +81,6 @@ const Home = () => {
           />
         </label>
       </div>
-      <input
-        type="text"
-        placeholder="Search for something"
-        onChange={onInputChange}
-        onKeyDown={onKeyDown}
-        value={input}
-      />
       <button type="button" onClick={onSearch}>
         Search
       </button>
