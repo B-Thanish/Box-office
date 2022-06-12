@@ -1,8 +1,14 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-console */
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/function-component-definition */
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router';
 import { apiGet } from '../misc/config';
+import ShowMainData from '../components/show/ShowMainData';
+import Details from '../components/show/Details';
+import Seasons from '../components/show/Seasons';
+import Cast from '../components/show/Cast';
 
 const reducer = (prevState, action) => {
   switch (action.type) {
@@ -30,7 +36,6 @@ const Show = () => {
     reducer,
     initialState
   );
-  // eslint-disable-next-line no-console
 
   useEffect(() => {
     let isMounted = true;
@@ -50,7 +55,7 @@ const Show = () => {
       isMounted = false;
     };
   }, [id]);
-  // eslint-disable-next-line no-console
+
   console.log('show', show);
 
   if (isLoading) {
@@ -59,7 +64,36 @@ const Show = () => {
   if (error) {
     return <div>Error occured: {error}</div>;
   }
-  return <div>this is show page</div>;
+  return (
+    <div>
+      <ShowMainData
+        image={show.image}
+        name={show.name}
+        rating={show.rating}
+        summary={show.summary}
+        tags={show.genres}
+      />
+
+      <div>
+        <h2>Details</h2>
+        <Details
+          status={show.status}
+          network={show.network}
+          premiered={show.premiered}
+        />
+      </div>
+
+      <div>
+        <h2>Seasons</h2>
+        <Seasons seasons={show._embedded.seasons} />
+      </div>
+
+      <div>
+        <h2>Cast</h2>
+        <Cast cast={show._embedded.cast} />
+      </div>
+    </div>
+  );
 };
 
 export default Show;

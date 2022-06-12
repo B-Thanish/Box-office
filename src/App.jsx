@@ -16,7 +16,7 @@ function App() {
         <Starred />
       </Route>
 
-      <Route exact="/show/:id">
+      <Route exact path="/show/:id">
         <Show />
       </Route>
 
